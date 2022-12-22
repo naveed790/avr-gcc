@@ -1,0 +1,24 @@
+#include<avr/io.h>
+#include<stdbool.h>
+int main(void){
+
+bool A,B,C,D,Y=0;
+DDRB = 0b00000011; 
+PORTB= 0b11111100;
+DDRD = 0b00000100; 
+
+
+
+while(1)
+   {
+	   A = (PINB & (1<<PINB0)) == (1<<PINB0);	
+	   B = (PINB & (1<<PINB1)) == (1<<PINB1);
+	   C = (PINB & (1<<PINB2)) == (1<<PINB2);
+	   D = (PINB & (1<<PINB3)) == (1<<PINB3);	  
+	   Y = ((A)&&(B)) || ((C)&&(D)) ;
+	   PORTD |= (Y<<2);
+
+   }
+
+	return 0;
+}
